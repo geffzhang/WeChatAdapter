@@ -7,7 +7,7 @@ using System.Text;
 
 namespace WeChatAdapter
 {
-    internal class AttachmentHash : IAttachmentHash
+    public class AttachmentHash : IAttachmentHash
     {
         /// <summary>
         /// Calculates the hash value, used to ignore same file when upload media.

@@ -32,7 +32,7 @@ namespace WeChatAdapter;
 /// WeChat message mapper will help create the bot activity and WeChat response.
 /// When deal with the media attachments or cards, mapper will upload the data first to aquire the acceptable media url.
 /// </remarks>
-internal class WeChatMessageMapper
+public class WeChatMessageMapper
 {
     /// <summary>
     /// Key of content source url.

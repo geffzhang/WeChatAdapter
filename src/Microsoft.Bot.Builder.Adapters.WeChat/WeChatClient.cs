@@ -20,13 +20,16 @@ using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Logging.Abstractions;
 using Newtonsoft.Json;
 using Microsoft.Bot.Builder;
+ 
+[assembly: InternalsVisibleTo("Microsoft.Bot.Builder.Adapters.WeChat.Tests")]
+ 
 
 namespace WeChatAdapter
 {
     /// <summary>
     /// A WeChat client is used to communicate with WeChat API.
     /// </summary>
-    internal class WeChatClient : IDisposable
+    public class WeChatClient : IDisposable
     {
         private const string ApiHost = "https://api.weixin.qq.com";
         private static readonly HttpClient HttpClient = new HttpClient();

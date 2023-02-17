@@ -8,9 +8,9 @@
 
   <ItemGroup>
     <PackageReference Include="AdaptiveCards.Rendering.Html" Version="2.7.3" />
-    <PackageReference Include="Microsoft.Bot.Builder.Dialogs" Version="4.17.2" />
-    <PackageReference Include="Microsoft.Bot.Builder.Integration.AspNet.Core" Version="4.17.2" />
-    <PackageReference Include="Microsoft.Bot.Schema" Version="4.17.2" />
+    <PackageReference Include="Microsoft.Bot.Builder.Dialogs" Version="4.19.2" />
+    <PackageReference Include="Microsoft.Bot.Builder.Integration.AspNet.Core" Version="4.19.2" />
+    <PackageReference Include="Microsoft.Bot.Schema" Version="4.19.2" />
   </ItemGroup>
 
 </Project>
