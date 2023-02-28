@@ -1,4 +1,6 @@
+using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Bot.Builder;
+using Serilog;
 using WeChatAdapter;
 using WeChatBot.Controllers;
 
@@ -9,6 +11,11 @@ namespace WeChatBot
         public static void Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
+            builder.Host.UseSerilog((context, services, configuration) => configuration
+                .ReadFrom.Configuration(context.Configuration)
+                .ReadFrom.Services(services)
+                .Enrich.FromLogContext()
+                .WriteTo.Console());
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
@@ -37,6 +44,12 @@ namespace WeChatBot
 
             // Create the bot as a transient. In this case the ASP Controller is expecting an IBot.
             builder.Services.AddTransient<IBot, RichCardsBot>();
+            // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
+            builder.Services.AddEndpointsApiExplorer();
+            builder.Services.AddSwaggerGen();
+
+            builder.Services.Configure<KestrelServerOptions>(x => x.AllowSynchronousIO = true)
+                .Configure<IISServerOptions>(x => x.AllowSynchronousIO = true);
 
             var app = builder.Build();
 
@@ -50,10 +63,12 @@ namespace WeChatBot
             app.UseRouting();
 
             app.UseAuthorization();
-
-            app.MapControllerRoute(
-                name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+            //if (app.Environment.IsDevelopment())
+            //{
+            app.UseSwagger();
+            app.UseSwaggerUI();
+            //}
+            app.MapControllers();
 
             app.Run();
         }

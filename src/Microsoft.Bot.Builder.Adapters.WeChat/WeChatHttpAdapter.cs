@@ -250,7 +250,7 @@ namespace WeChatAdapter
 
             try
             {
-                var wechatRequest = GetRequestMessage(httpRequest.Body, secretInfo);
+                var wechatRequest = await GetRequestMessage(httpRequest.Body, secretInfo);
                 var wechatResponse = await ProcessWeChatRequest(
                                 wechatRequest,
                                 bot.OnTurnAsync,
@@ -310,18 +310,21 @@ namespace WeChatAdapter
         /// <param name="requestStream">WeChat RequestBody stream.</param>
         /// <param name="secretInfo">The secretInfo used to decrypt the message.</param>
         /// <returns>Decrypted WeChat RequestMessage instance.</returns>
-        private IRequestMessageBase GetRequestMessage(Stream requestStream, SecretInfo secretInfo)
+        private async Task<IRequestMessageBase> GetRequestMessage(Stream requestStream, SecretInfo secretInfo)
         {
             if (requestStream.CanSeek)
             {
                 requestStream.Seek(0, SeekOrigin.Begin);
             }
-
-            using (var xr = XmlReader.Create(requestStream))
+            XmlReaderSettings settings = new XmlReaderSettings
             {
-                var postDataDocument = XDocument.Load(xr);
+                Async = true
+            };
+            using (var xr = XmlReader.Create(requestStream,settings))
+            {
+                var postDataDocument = await XDocument.LoadAsync(xr,LoadOptions.None, default);
 
-                // decrypt xml document message and parse to message
+                //// decrypt xml document message and parse to message
                 var postDataStr = postDataDocument.ToString();
                 var decryptDoc = postDataDocument;
 
