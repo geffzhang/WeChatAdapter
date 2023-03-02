@@ -5,7 +5,7 @@ namespace WeChatBot.Controllers
 {
     public class WeChatAdapterWithErrorHandler : WeChatHttpAdapter
     {
-        public WeChatAdapterWithErrorHandler(WeChatSettings settings, IStorage storage, IBackgroundTaskQueue taskQueue, ILogger logger = null, ConversationState conversationState = null, UserState userState = null)
+        public WeChatAdapterWithErrorHandler(WeChatSettings settings, IStorage storage, IBackgroundTaskQueue taskQueue, ILogger<WeChatAdapterWithErrorHandler> logger, ConversationState conversationState, UserState userState)
             : base(settings, storage, taskQueue, logger)
         {
             OnTurnError = async (turnContext, exception) =>
