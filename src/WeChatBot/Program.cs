@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Bot.Builder;
 using Serilog;
 using WeChatAdapter;
+using WeChatBot.Bots;
 using WeChatBot.Controllers;
 
 namespace WeChatBot
@@ -34,6 +35,10 @@ namespace WeChatBot
             builder.Configuration.Bind("WeChatSettings", wechatSettings);
             builder.Services.AddSingleton<WeChatSettings>(wechatSettings);
 
+            var openAISettings = new OpenAISetting();
+            builder.Configuration.Bind("OpenAI", openAISettings);
+            builder.Services.AddSingleton(openAISettings);
+
             // Configure hosted serivce.
             builder.Services.AddSingleton<IBackgroundTaskQueue, BackgroundTaskQueue>();
             builder.Services.AddHostedService<QueuedHostedService>();
@@ -43,7 +48,7 @@ namespace WeChatBot
             builder.Services.AddSingleton<MainDialog>();
 
             // Create the bot as a transient. In this case the ASP Controller is expecting an IBot.
-            builder.Services.AddTransient<IBot, RichCardsBot>();
+            builder.Services.AddTransient<IBot, ChatGPTBot>();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
             builder.Services.AddEndpointsApiExplorer();
             builder.Services.AddSwaggerGen();
