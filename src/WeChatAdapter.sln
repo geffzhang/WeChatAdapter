@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatAdapters.Tests", "Mic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WeChatBot", "WeChatBot\WeChatBot.csproj", "{B9324EC0-E2B4-4474-8CDC-C3EA042CC186}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "OpenAI_API", "OpenAI_API\OpenAI_API.csproj", "{90EEE227-69F2-4B9E-B109-31197E66FB4D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{B9324EC0-E2B4-4474-8CDC-C3EA042CC186}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B9324EC0-E2B4-4474-8CDC-C3EA042CC186}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B9324EC0-E2B4-4474-8CDC-C3EA042CC186}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90EEE227-69F2-4B9E-B109-31197E66FB4D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90EEE227-69F2-4B9E-B109-31197E66FB4D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90EEE227-69F2-4B9E-B109-31197E66FB4D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90EEE227-69F2-4B9E-B109-31197E66FB4D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
